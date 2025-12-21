@@ -94,15 +94,28 @@ I chose "Metro-Gnome" as a playful spin on "metronome" - combining the musical t
 
 The Metro-Gnome won out for its broad appeal, clear visual identity, and alignment with QuaverEd's mission to make music education accessible and enjoyable for elementary students.
 
-The app adapts to different screen sizes...
+### Responsive Design
 
-**Mobile View:**
-![Mobile View](./screenshots/mobileView.png)
+The app adapts to different screen sizes to ensure usability across devices students and teachers might use:
 
-Key responsive features:
+<table>
+<tr>
+<td width="60%">
+
+**Key responsive features:**
 - Desktop: Side-by-side layout with image and controls
 - Mobile: Stacked vertical layout for easier touch interaction
-...
+- Typography scales appropriately (Luckiest Guy for headers, Poppins for controls)
+- Buttons remain easily tappable on small screens
+
+</td>
+<td width="40%">
+
+![Mobile View](./screenshots/mobileView.png)
+
+</td>
+</tr>
+</table>
   
 ---
 
@@ -110,7 +123,7 @@ Key responsive features:
 
 Before I could create a metronome app, I first needed a basic understanding of how the Web Audio API worked. I decided to start with the simplest possible implementation: a user clicks a button and hears a brief click sound. This would give me the foundational knowledge needed to build the full metronome functionality.
 
-### The Code
+### Web Audio API Test Code
 
 ![Web Audio API Test Code](./screenshots/audioTestCode.png)
 
