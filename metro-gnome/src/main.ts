@@ -1,5 +1,7 @@
 import './style.css'
 
+const audioContext = new AudioContext();
+
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class='container'>
     <div class='welcome-header'>
@@ -33,3 +35,23 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </div>
   </div>
 `
+
+const playButton = document.querySelector('.play-btn') as HTMLButtonElement;
+
+playButton.addEventListener('click', () => {
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+
+  oscillator.frequency.value = 440;
+  oscillator.type = "sine";
+
+  const now = audioContext.currentTime;
+  gainNode.gain.setValueAtTime(0.3, now);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+
+  oscillator.start(now);
+  oscillator.stop(now + 0.05);
+})
