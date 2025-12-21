@@ -28,10 +28,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
 
         <div class='button-container'>
-            <button class='control-btn play-btn' aria-label='Play metronome'>
+            <button class='control-btn play-btn'>
               <img src='/play-button.png' class='btn-image' alt='Play metronome' />
             </button>
-            <button class='control-btn stop-btn' aria-label='Stop metronome'>
+            <button class='control-btn stop-btn'>
               <img src='/stop-button.png' class='btn-image' alt='Stop metronome' />
             </button>
         </div>
