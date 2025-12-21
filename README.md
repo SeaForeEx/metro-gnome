@@ -100,16 +100,14 @@ The app adapts to different screen sizes to ensure usability across devices stud
 
 <table>
 <tr>
-<td width="60%">
+<td width="50%">
 
 **Key responsive features:**
-- Desktop: Side-by-side layout with image and controls
-- Mobile: Stacked vertical layout for easier touch interaction
-- Typography scales appropriately (Luckiest Guy for headers, Poppins for controls)
-- Buttons remain easily tappable on small screens
+- Desktop (already shown): Side-by-side layout with image and controls
+- Mobile (to the right): Stacked vertical layout for easier touch interaction
 
 </td>
-<td width="40%">
+<td width="50%">
 
 ![Mobile View](./screenshots/mobileView.png)
 
