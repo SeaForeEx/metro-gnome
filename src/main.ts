@@ -39,23 +39,39 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </div>
   </div>
 `
+let oscillator: OscillatorNode | null = null;
 
 const playButton = document.querySelector('.play-btn') as HTMLButtonElement;
+const stopButton = document.querySelector('.stop-btn') as HTMLButtonElement;
 
 playButton.addEventListener('click', () => {
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
+  if (oscillator) return;
+  // const gainNode = audioContext.createGain();
 
+  oscillator = audioContext.createOscillator();
   oscillator.frequency.value = 440;
   oscillator.type = "sine";
 
-  const now = audioContext.currentTime;
-  gainNode.gain.setValueAtTime(0.3, now);
-  gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+  // const now = audioContext.currentTime;
+  // gainNode.gain.setValueAtTime(0.3, now);
+  // gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
 
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
+  // oscillator.connect(gainNode);
+  // gainNode.connect(audioContext.destination);
 
-  oscillator.start(now);
-  oscillator.stop(now + 0.05);
+  // oscillator.start(now);
+  // oscillator.stop(now + 0.05);
+  oscillator.connect(audioContext.destination);
+  oscillator.start();
+
+  oscillator.onended = () => {
+    oscillator = null;
+  };
+})
+
+stopButton.addEventListener('click', () => {
+  if (oscillator) {
+    oscillator.stop();
+    oscillator = null;
+  }
 })
