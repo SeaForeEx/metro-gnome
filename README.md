@@ -88,9 +88,8 @@ I chose "Metro-Gnome" as a playful spin on "metronome" - combining the musical t
 - Visual interest that appeals to younger students
 - A lighthearted approach to music practice
 
-**Other Concepts Considered:**
+**Other Concept Considered:**
 - **Q-Nome**: Maintaining QuaverEd's "Q" branding while creating a metronome app
-- **Welcome to the Terror-Nome**: A Public Enemy-themed metronome (play on "Welcome to the Terrordome") - fun for older students but potentially too niche
 
 The Metro-Gnome won out for its broad appeal, clear visual identity, and alignment with QuaverEd's mission to make music education accessible and enjoyable for elementary students.
 
