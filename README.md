@@ -123,13 +123,39 @@ The app adapts to different screen sizes to ensure usability across devices stud
 
 ## Testing & Development Process
 
-### Initial Web Audio API Exploration
+Before implementing the full metronome, I tested basic Web Audio API functionality to understand how audio nodes work.
 
-Before implementing the full metronome, I tested basic audio functionality to understand how the Web Audio API works.
+### First Test: Creating a Simple Beep
 
-#### Test 1: Creating a Simple Beep
+I tested creating a single beep sound when the play button was clicked:
+```typescript
+const audioContext = new AudioContext();
 
-![Simple Beep](./screenshots/simpleBeep.png)
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+  <div class='container'>
+    <button class='control-btn play-btn'>PLAY</button>
+  </div>
+
+const playButton = document.querySelector('.play-btn') as HTMLButtonElement;
+
+playButton.addEventListener('click', () => {
+  const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
+
+  oscillator.frequency.value = 440;
+  oscillator.type = "sine";
+
+  const now = audioContext.currentTime;
+  gainNode.gain.setValueAtTime(0.3, now);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+
+  oscillator.start(now);
+  oscillator.stop(now + 0.05);
+});
+```
 
 ### Breaking It Down
 
@@ -194,3 +220,10 @@ oscillator.stop(now + 0.05);
 Started the oscillator at `now` and scheduled it to stop 0.05 seconds later, matching the decay time of the volume envelope.
 
 **Result:** A percussive "tick" sound that plays each time the button is clicked - perfect for a metronome!
+
+---
+
+### Second Test: Start/Stop Controls
+
+I tested start/stop functionality to understand oscillator lifecycle management. Key learning: oscillators must be stored in a variable to be stopped later - you can only stop an oscillator you've maintained a reference to.
+
