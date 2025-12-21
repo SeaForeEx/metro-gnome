@@ -1,6 +1,6 @@
 # MetroGnome - Browser-Based Metronome
 
-![MetroGnome Desktop View](./screenshots/desktop.png)
+![MetroGnome Desktop View](./screenshots/desktopView.png)
 
 A TypeScript metronome application built with Vite and the Web Audio API, featuring a playful gnome theme designed for young musicians.
 
@@ -97,7 +97,7 @@ The Metro-Gnome won out for its broad appeal, clear visual identity, and alignme
 The app adapts to different screen sizes...
 
 **Mobile View:**
-![Mobile View](./screenshots/mobile.png)
+![Mobile View](./screenshots/mobileView.png)
 
 Key responsive features:
 - Desktop: Side-by-side layout with image and controls
@@ -112,7 +112,7 @@ Before I could create a metronome app, I first needed a basic understanding of h
 
 ### The Code
 
-<img width="578" height="504" alt="Screenshot 2025-12-21 at 12 40 21 AM" src="https://github.com/user-attachments/assets/a8b0d6c0-ca16-49c2-b582-e9c47bcd07ce" />
+![Web Audio API Test Code](./screenshots/audioTestCode.png)
 
 ### Breaking It Down
 
