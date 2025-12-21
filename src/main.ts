@@ -40,38 +40,73 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `
 let oscillator: OscillatorNode | null = null;
+let nextNoteTime = 0.0;
+let scheduleAheadTime = 0.1;
+let tempo = 120.0;
+let beatCount = 0;
+let isPlaying = false;
+
+function nextNote() {
+  let secondsPerBeat = 60.0 / tempo;
+
+  nextNoteTime += secondsPerBeat;
+
+  beatCount++;
+
+  if (beatCount == 4) {
+    beatCount = 0;
+  }
+}
+
+function scheduleNote( beatNumber: number, time: number) {
+  const gainNode = audioContext.createGain();
+
+  oscillator = audioContext.createOscillator();
+  oscillator.type = "sine";
+
+  gainNode.gain.setValueAtTime(0.3, time);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, time + 0.05);
+
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+
+  if (beatNumber % 4 === 0) {
+    oscillator.frequency.value = 440.0;
+  } else {
+    oscillator.frequency.value = 220.0;
+  }
+  
+  oscillator.start(time);
+  oscillator.stop(time + 0.05);
+}
+
+function scheduler() {
+  if (!isPlaying) return;
+  while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) {
+    scheduleNote( beatCount, nextNoteTime );
+    nextNote();
+  }
+}
 
 const playButton = document.querySelector('.play-btn') as HTMLButtonElement;
 const stopButton = document.querySelector('.stop-btn') as HTMLButtonElement;
 
+let schedulerId: number | null = null;
+
 playButton.addEventListener('click', () => {
-  if (oscillator) return;
-  // const gainNode = audioContext.createGain();
+  if (isPlaying) return;
 
-  oscillator = audioContext.createOscillator();
-  oscillator.frequency.value = 440;
-  oscillator.type = "sine";
+  nextNoteTime = audioContext.currentTime;
+  beatCount = 0;
+  isPlaying = true;
 
-  // const now = audioContext.currentTime;
-  // gainNode.gain.setValueAtTime(0.3, now);
-  // gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
-
-  // oscillator.connect(gainNode);
-  // gainNode.connect(audioContext.destination);
-
-  // oscillator.start(now);
-  // oscillator.stop(now + 0.05);
-  oscillator.connect(audioContext.destination);
-  oscillator.start();
-
-  oscillator.onended = () => {
-    oscillator = null;
-  };
+  schedulerId = setInterval(() => scheduler(), 25);
 })
 
 stopButton.addEventListener('click', () => {
-  if (oscillator) {
-    oscillator.stop();
-    oscillator = null;
+  isPlaying = false;
+  if (schedulerId !== null) {
+    clearInterval(schedulerId);
+    schedulerId = null; 
   }
 })
