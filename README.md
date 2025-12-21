@@ -16,7 +16,7 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 2. [Project Setup](#project-setup)
 3. [Debugging Node Version Conflicts](#debugging-node-version-conflicts)
 4. [Design Decisions](#design-decisions)
-5. [Understanding the Web Audio API](#understanding-the-web-audio-api)
+5. [Testing & Development Process](#testing--development-process)
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
 
 ---
@@ -121,13 +121,15 @@ The app adapts to different screen sizes to ensure usability across devices stud
   
 ---
 
-## Understanding the Web Audio API - Step by Step
+## Testing & Development Process
 
-Before I could create a metronome app, I first needed a basic understanding of how the Web Audio API worked. I decided to start with the simplest possible implementation: a user clicks a button and hears a brief click sound. This would give me the foundational knowledge needed to build the full metronome functionality.
+### Initial Web Audio API Exploration
 
-### Web Audio API Test Code
+Before implementing the full metronome, I tested basic audio functionality to understand how the Web Audio API works.
 
-![Web Audio API Test Code](./screenshots/audioTestCode.png)
+#### Test 1: Creating a Simple Beep
+
+![Simple Beep](./screenshots/simpleBeep.png)
 
 ### Breaking It Down
 
