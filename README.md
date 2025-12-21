@@ -1,8 +1,13 @@
-# MetroGnome - Browser-Based Metronome
+# 🍄 Metro-Gnome 🍄
+
+A whimsical browser-based metronome built with TypeScript and Web Audio API designed for young musicians.
+
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![Web Audio API](https://img.shields.io/badge/Web_Audio_API-FF6B35?style=flat&logo=html5&logoColor=white)
+
 
 ![MetroGnome Desktop View](./screenshots/desktopView.png)
-
-A TypeScript metronome application built with Vite and the Web Audio API, featuring a playful gnome theme designed for young musicians.
 
 ---
 
