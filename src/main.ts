@@ -25,7 +25,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <select id='time-signature'>
             <option value='4'>4/4</option>
             <option value='3'>3/4</option>
-            <option value='2'>2/4</option>
             <option value='6'>6/8</option>
           </select>
         </div>
@@ -43,6 +42,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 `
 let oscillator: OscillatorNode | null = null;
 let tempo = 120.0;
+let timeSignature = 4;
 let nextNoteTime = 0.0;
 let scheduleAheadTime = 0.1;
 let beatCount = 0;
@@ -50,6 +50,7 @@ let isPlaying = false;
 
 const bpmInput = document.getElementById('bpm') as HTMLInputElement;
 const bpmError = document.getElementById('bpm-error') as HTMLElement;
+const timeSignatureInput = document.getElementById('time-signature') as HTMLSelectElement;
 
 bpmInput.addEventListener('input', () => {
   const value = parseFloat(bpmInput.value);
@@ -66,14 +67,22 @@ bpmInput.addEventListener('blur', () => {
   bpmError.style.display = 'none';
 });
 
+timeSignatureInput?.addEventListener('input', () => {
+  timeSignature = parseFloat(timeSignatureInput.value);
+})
+
 function nextNote() {
   let secondsPerBeat = 60.0 / tempo;
+
+  if (timeSignature === 6) {
+    secondsPerBeat = secondsPerBeat / 2;
+  }
 
   nextNoteTime += secondsPerBeat;
 
   beatCount++;
 
-  if (beatCount == 4) {
+  if (beatCount == timeSignature) {
     beatCount = 0;
   }
 }
@@ -90,7 +99,7 @@ function scheduleNote( beatNumber: number, time: number) {
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
 
-  if (beatNumber % 4 === 0) {
+  if (beatNumber % timeSignature === 0) {
     oscillator.frequency.value = 440.0;
   } else {
     oscillator.frequency.value = 220.0;
