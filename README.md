@@ -3,7 +3,12 @@
 A whimsical browser-based metronome built with TypeScript and Web Audio API designed for young musicians.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-CB3837?style=flat&logo=npm&logoColor=white)
 ![Web Audio API](https://img.shields.io/badge/Web_Audio_API-FF6B35?style=flat&logo=html5&logoColor=white)
 
 
@@ -236,9 +241,7 @@ Once I connected to the Web Audio API and achieved start/stop functionality, I f
 
 I researched Web Audio API timing and found an authoritative article that not only broke down the issues with creating browser-based metronomes but also provided an elegant solution combining JavaScript intervals and Web Audio API.
 
-Chris Wilson's ["A Tale of Two Clocks"](https://www.html5rocks.com/en/tutorials/audio/scheduling/) explains that while Web Audio API provides precise timing through its audio clock, users cannot directly interact with it for controls. Although users can interact with JavaScript timers (setTimeout, setInterval), these aren't 100% accurate due to other computations happening on the main thread.
-
-The solution: allow users to interact with the Web Audio API AudioContext through a setInterval function that uses a scheduler to set up each beat in the future.
+Chris Wilson's ["A Tale of Two Clocks"](https://www.html5rocks.com/en/tutorials/audio/scheduling/) explains that while Web Audio API provides precise timing through its audio clock, users cannot directly interact with it for controls. Although users can interact with JavaScript timers (setTimeout, setInterval), these aren't 100% accurate due to other computations happening on the main thread. I implemented this pattern based on Wilson's [GitHub metronome repo](https://github.com/cwilso/metronome), adapting the core scheduling logic for my UI and time signature system.
 
 ### The Code
 
