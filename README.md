@@ -241,5 +241,20 @@ The solution: allow users to interact with the Web Audio API AudioContext throug
 
 ### The Code
 
+<table>
+<tr>
+<td width="50%">
+
+![Variables and Functions](./screenshots/variablesAndFunctions.png)
+
+</td>
+<td width="50%">
+
+![Scheduler and Buttons](./screenshots/schedulerAndButtons.png)
+
+</td>
+</tr>
+</table>
+
 ### Breaking It Down
 
