@@ -14,9 +14,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <div class='text-container'>
         <div class='input-group'>
           <label for='bpm'>BPM</label>
-          <input type='number' id='bpm' value='120' min='40' max='208' />
+          <input type='number' id='bpm' value='120' min='40' max='208' 
+            oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <span id='bpm-error' class='error-message'>
+              Keep BPM between 40-208
+            </span>
         </div>
-
         <div class='input-group'>
           <label for='time-signature'>Time Signature</label>
           <select id='time-signature'>
@@ -26,7 +29,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             <option value='6'>6/8</option>
           </select>
         </div>
-
         <div class='button-container'>
             <button class='control-btn play-btn'>
               <img src='/play-button.png' class='btn-image' alt='Play metronome' />
@@ -40,11 +42,29 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `
 let oscillator: OscillatorNode | null = null;
+let tempo = 120.0;
 let nextNoteTime = 0.0;
 let scheduleAheadTime = 0.1;
-let tempo = 20.0;
 let beatCount = 0;
 let isPlaying = false;
+
+const bpmInput = document.getElementById('bpm') as HTMLInputElement;
+const bpmError = document.getElementById('bpm-error') as HTMLElement;
+
+bpmInput.addEventListener('input', () => {
+  const value = parseFloat(bpmInput.value);
+  if (value >= 40 && value <= 208) {
+    tempo = value;
+    bpmError.style.display = 'none';
+  } else {
+    bpmError.style.display = 'block';
+  }
+});
+
+bpmInput.addEventListener('blur', () => {
+  bpmInput.value = tempo.toString();
+  bpmError.style.display = 'none';
+});
 
 function nextNote() {
   let secondsPerBeat = 60.0 / tempo;

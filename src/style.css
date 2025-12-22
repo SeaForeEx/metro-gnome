@@ -122,6 +122,14 @@ body::before {
   box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
 }
 
+.error-message {
+  display: none;
+  font-size: 1.25rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
 /* =====================================================
    BUTTONS
    ===================================================== */
