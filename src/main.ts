@@ -42,7 +42,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 let oscillator: OscillatorNode | null = null;
 let nextNoteTime = 0.0;
 let scheduleAheadTime = 0.1;
-let tempo = 120.0;
+let tempo = 20.0;
 let beatCount = 0;
 let isPlaying = false;
 
