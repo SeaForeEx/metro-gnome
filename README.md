@@ -379,3 +379,4 @@ stopButton.addEventListener('click', () => {
 
 ## Metronome Input Functionality
 
+![BPM Error Message](./screenshots/errorMessage.png)
