@@ -18,6 +18,7 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 4. [Design Decisions](#design-decisions)
 5. [Testing & Development Process](#testing--development-process)
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
+7. [Metronome Input Functionality](#metronome-input-functionality)
 
 ---
 
@@ -257,4 +258,121 @@ The solution: allow users to interact with the Web Audio API AudioContext throug
 </table>
 
 ### Breaking It Down
+
+**1. Global Variables**
+```typescript
+let oscillator: OscillatorNode | null = null;
+let nextNoteTime = 0.0;
+let scheduleAheadTime = 0.1;
+let tempo = 120.0;
+let beatCount = 0;
+let isPlaying = false;
+```
+
+- **oscillator:** Stores reference to the most recently created oscillator. A new oscillator is created for each beat.
+- **nextNoteTime:** The time (in seconds on the audio clock) when the next beat should play.
+- **scheduleAheadTime:** How far ahead the scheduler looks to check if beats need scheduling (0.1 seconds = 100ms).
+- **tempo:** The beats per minute (default 120 BPM).
+- **beatCount:** Tracks the current beat number in the measure (0-3 for 4/4 time).
+- **isPlaying:** Boolean flag indicating whether the metronome is currently active.
+
+**2. User Clicks Play**
+```typescript
+let schedulerId: number | null = null;
+
+playButton.addEventListener('click', () => {
+  if (isPlaying) return;
+
+  nextNoteTime = audioContext.currentTime;
+  beatCount = 0;
+  isPlaying = true;
+
+  schedulerId = setInterval(() => scheduler(), 25);
+})
+```
+
+- **schedulerId:** Stores the interval ID returned by setInterval so we can stop it later with clearInterval.
+- **if (isPlaying) return:** Prevents starting multiple schedulers if the play button is clicked repeatedly.
+- **Initialization:** Sets nextNoteTime to the current audio time (starts immediately), resets beatCount to 0 (starts from beat 1), and sets isPlaying to true.
+- **Start Scheduler:** Calls the scheduler function every 25 milliseconds to check if beats need scheduling.
+
+**3. Scheduler Function**
+```typescript
+function scheduler() {
+  if (!isPlaying) return;
+  while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) {
+    scheduleNote(beatCount, nextNoteTime);
+    nextNote();
+  }
+}
+```
+
+- **if (!isPlaying) return:** Exits immediately if the metronome is not playing.
+- **while loop:** Checks if any beats need to be scheduled within the next 100ms (the lookahead window).
+- **For each beat:** Calls scheduleNote() to create and schedule the oscillator at the precise time, then nextNote() to calculate when the next beat should occur.
+
+**4. scheduleNote Function**
+```typescript
+function scheduleNote(beatNumber: number, time: number) {
+  const gainNode = audioContext.createGain();
+  oscillator = audioContext.createOscillator();
+  oscillator.type = "sine";
+  
+  gainNode.gain.setValueAtTime(0.3, time);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, time + 0.05);
+  
+  oscillator.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  
+  if (beatNumber % 4 === 0) {
+    oscillator.frequency.value = 440.0;
+  } else {
+    oscillator.frequency.value = 220.0;
+  }
+  
+  oscillator.start(time);
+  oscillator.stop(time + 0.05);
+}
+```
+
+- **Oscillator and GainNode:** Creates the click sound with envelope shaping (similar to the Simple Beep test).
+- **if (beatNumber % 4 === 0):** Accents beat 1 of each measure with a higher frequency (440Hz vs 220Hz) so users can count measures.
+
+**5. nextNote Function**
+```typescript
+function nextNote() {
+  let secondsPerBeat = 60.0 / tempo;
+  nextNoteTime += secondsPerBeat;
+  beatCount++;
+  
+  if (beatCount == 4) {
+    beatCount = 0;
+  }
+}
+```
+
+- **secondsPerBeat:** Calculates the duration of one beat in seconds (60 ÷ 120 BPM = 0.5 seconds per beat).
+- **nextNoteTime:** Advances by one beat duration to schedule the next beat at the correct time.
+- **beatCount:** Increments by 1 to track position in the measure.
+- **if (beatCount == 4):** Resets beatCount to 0 after 4 beats, starting a new measure.
+
+**6. User Clicks Stop**
+```typescript
+stopButton.addEventListener('click', () => {
+  isPlaying = false;
+  if (schedulerId !== null) {
+    clearInterval(schedulerId);
+    schedulerId = null; 
+  }
+})
+```
+
+- **isPlaying = false:** Signals the scheduler to stop scheduling new beats on its next check.
+- **clearInterval:** Stops the 25ms interval from calling the scheduler function and resets schedulerId to null for cleanup.
+
+**Note:** Any beats already scheduled within the 100ms lookahead window will still play until they finish. The metronome stops scheduling new beats immediately, but stops completely within ~100ms.
+
+---
+
+## Metronome Input Functionality
 
