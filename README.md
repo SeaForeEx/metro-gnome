@@ -227,3 +227,19 @@ Started the oscillator at `now` and scheduled it to stop 0.05 seconds later, mat
 
 I tested start/stop functionality to understand oscillator lifecycle management. Key learning: oscillators must be stored in a variable to be stopped later - you can only stop an oscillator you've maintained a reference to.
 
+---
+
+## Building the Metronome Functionality
+
+Once I connected to the Web Audio API and achieved start/stop functionality, I focused on creating a steady beat. I decided to hardcode a 4/4 time signature at 120 BPM before connecting the user inputs to the metronome.
+
+I researched Web Audio API timing and found an authoritative article that not only broke down the issues with creating browser-based metronomes but also provided an elegant solution combining JavaScript intervals and Web Audio API.
+
+Chris Wilson's ["A Tale of Two Clocks"](https://www.html5rocks.com/en/tutorials/audio/scheduling/) explains that while Web Audio API provides precise timing through its audio clock, users cannot directly interact with it for controls. Although users can interact with JavaScript timers (setTimeout, setInterval), these aren't 100% accurate due to other computations happening on the main thread.
+
+The solution: allow users to interact with the Web Audio API AudioContext through a setInterval function that uses a scheduler to set up each beat in the future.
+
+### The Code
+
+### Breaking It Down
+
