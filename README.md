@@ -25,6 +25,8 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
 7. [Connecting the UI Controls](#connecting-the-ui-controls)
 8. [More Design Decisions](#more-design-decisions)
+9. [Future Enhancements](#future-enhancements)
+10. [Contact](#contact)
 
 ---
 
@@ -510,3 +512,43 @@ function nextNote() {
 </table>
 
 ---
+
+## Future Enhancements
+
+As I continue to develop Metro-Gnome, here are features I'd like to add to enhance the experience for young musicians:
+
+### Musical Features
+- **Compound Time Feel for 6/8** - Option to accent beats 1 and 4 (two strong beats per measure) instead of just beat 1, matching traditional 6/8 feel
+- **Additional Time Signatures** - Include 5/4, 7/8, 9/8 for more advanced students
+- **Subdivisions Toggle** - Allow practice with eighth notes, sixteenth notes, or triplets
+- **Custom Sound Options** - Different click sounds like wood block, cowbell, or electronic beep
+- **Tap Tempo** - Let users tap a button to set BPM by feel instead of choosing a number
+
+### Visual & Interactive Features
+- **Animated Gnome Character** - Have the gnome bounce or conduct to the beat
+- **Beat Flash Indicator** - Screen pulses subtly on downbeats for visual reinforcement
+- **Seasonal Themes** - Winter snow, autumn leaves, spring flowers rotating with the seasons
+
+### Educational Features
+- **Practice Timer** - Set session durations to encourage focused practice
+- **Visual Beat Counter** - Display current beat position (1, 2, 3, 4...) for rhythm awareness
+
+### Accessibility
+- **Keyboard Shortcuts** - Spacebar to play/stop, arrow keys for tempo adjustment
+- **Enhanced Screen Reader Support** - Improved ARIA labels and announcements
+- **High Contrast Mode** - For visually impaired students
+
+These enhancements would make MetroGnome more versatile for different skill levels while maintaining its whimsical, kid-friendly character.
+
+---
+
+## Contact
+
+Questions or feedback? Feel free to reach out:
+- **Email:** charlesbridgersiv@gmail.com
+- **LinkedIn:** [Charles Bridgers IV](https://www.linkedin.com/in/charlesbridgersiv/)
+- **GitHub:** [SeaForeEx](https://github.com/SeaForeEx)
+
+---
+
+Thank you for reviewing MetroGnome! 🍄🎵
