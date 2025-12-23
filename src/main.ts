@@ -18,12 +18,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <input type='range' id='bpm' step="1" value='120' min='40' max='208' />
         </div>
         <div class='input-group'>
-          <label for='time-signature'>Time Signature</label>
-          <select id='time-signature'>
-            <option value='4'>4/4</option>
-            <option value='3'>3/4</option>
-            <option value='6'>6/8</option>
-          </select>
+          <label>Time Signature</label>
+          <div class='time-signature-buttons'>
+            <button class='time-sig-btn active' data-value='4'>4/4</button>
+            <button class='time-sig-btn' data-value='3'>3/4</button>
+            <button class='time-sig-btn' data-value='6'>6/8</button>
+          </div>
         </div>
         <div class='button-container'>
             <button class='control-btn play-btn'>
@@ -51,16 +51,22 @@ let isPlaying: boolean = false;
 const bpmSlider = document.getElementById('bpm') as HTMLInputElement;
 const bpmDisplay = document.getElementById('bpm-display') as HTMLElement;
 
-const timeSignatureInput = document.getElementById('time-signature') as HTMLSelectElement;
+const timeSignatureButtons = document.querySelectorAll('.time-sig-btn');
 
 bpmSlider.addEventListener('input', () => {
   tempo = parseInt(bpmSlider.value);
   bpmDisplay.textContent = bpmSlider.value;
 });
 
-timeSignatureInput?.addEventListener('input', () => {
-  timeSignature = parseFloat(timeSignatureInput.value);
-})
+timeSignatureButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    timeSignatureButtons.forEach(btn => btn.classList.remove('active'));
+    
+    button.classList.add('active');
+    
+    timeSignature = parseFloat((button as HTMLElement).dataset.value || '4');
+  });
+});
 
 function nextNote() {
   let secondsPerBeat = 60.0 / tempo;
