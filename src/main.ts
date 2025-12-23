@@ -1,7 +1,5 @@
 import './style.css'
 
-const audioContext = new AudioContext();
-
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class='container'>
     <div class='welcome-header'>
@@ -39,13 +37,16 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </div>
   </div>
 `
+
+const audioContext = new AudioContext();
+
 let oscillator: OscillatorNode | null = null;
-let tempo = 120.0;
-let timeSignature = 4;
-let nextNoteTime = 0.0;
-let scheduleAheadTime = 0.1;
-let beatCount = 0;
-let isPlaying = false;
+let tempo: number = 120.0;
+let timeSignature: number = 4;
+let nextNoteTime: number = 0.0;
+let scheduleAheadTime: number = 0.1;
+let beatCount: number = 0;
+let isPlaying: boolean = false;
 
 const bpmSlider = document.getElementById('bpm') as HTMLInputElement;
 const bpmDisplay = document.getElementById('bpm-display') as HTMLElement;
@@ -82,6 +83,7 @@ function scheduleNote( beatNumber: number, time: number) {
 
   oscillator = audioContext.createOscillator();
   oscillator.type = "sine";
+  oscillator.frequency.value = 220.0;
 
   gainNode.gain.setValueAtTime(0.3, time);
   gainNode.gain.exponentialRampToValueAtTime(0.01, time + 0.05);
@@ -91,8 +93,6 @@ function scheduleNote( beatNumber: number, time: number) {
 
   if (beatNumber % timeSignature === 0) {
     oscillator.frequency.value = 440.0;
-  } else {
-    oscillator.frequency.value = 220.0;
   }
   
   oscillator.start(time);
