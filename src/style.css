@@ -260,6 +260,8 @@
     
     .container {
       padding: 1rem; 
+      justify-content: flex-start; 
+      padding-top: 2rem; 
     }
     
     .content-wrapper {
