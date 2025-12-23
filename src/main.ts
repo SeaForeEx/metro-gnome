@@ -48,14 +48,18 @@ const stopButton = document.querySelector('.stop-btn') as HTMLButtonElement;
 /* Audio Context & Constants */
 const audioContext = new AudioContext();
 const SCHEDULER_INTERVAL = 25;
+const SCHEDULE_AHEAD_TIME = 0.1;
 
-/* State Variables */
+/* Metronome Settings */
 let tempo: number = 120.0;
 let timeSignature: number = 4;
-let nextNoteTime: number = 0.0;
-let scheduleAheadTime: number = 0.1;
-let beatCount: number = 0;
+
+/* Playback State */
 let isPlaying: boolean = false;
+let beatCount: number = 0;
+
+/* Scheduling State */
+let nextNoteTime: number = 0.0;
 let schedulerId: number | null = null;
 
 /* Event Listeners */
@@ -93,22 +97,8 @@ stopButton.addEventListener('click', () => {
 })
 
 /* Audio Functions */
-function nextNote() {
-  let secondsPerBeat = 60.0 / tempo;
 
-  if (timeSignature === 6) {
-    secondsPerBeat = secondsPerBeat / 2;
-  }
-
-  nextNoteTime += secondsPerBeat;
-
-  beatCount++;
-
-  if (beatCount === timeSignature) {
-    beatCount = 0;
-  }
-}
-
+/** Schedules a single beat sound at the specified time */
 function scheduleNote( beatNumber: number, time: number) {
   const gainNode = audioContext.createGain();
   const oscillator = audioContext.createOscillator();
@@ -126,9 +116,27 @@ function scheduleNote( beatNumber: number, time: number) {
   oscillator.stop(time + 0.05);
 }
 
+/** Advances to the next beat and updates timing */
+function nextNote() {
+  let secondsPerBeat = 60.0 / tempo;
+
+  if (timeSignature === 6) {
+    secondsPerBeat = secondsPerBeat / 2;
+  }
+
+  nextNoteTime += secondsPerBeat;
+
+  beatCount++;
+
+  if (beatCount === timeSignature) {
+    beatCount = 0;
+  }
+}
+
+/** Look-ahead scheduler that queues upcoming beats */
 function scheduler() {
   if (!isPlaying) return;
-  while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) {
+  while (nextNoteTime < audioContext.currentTime + SCHEDULE_AHEAD_TIME) {
     scheduleNote( beatCount, nextNoteTime );
     nextNote();
   }
