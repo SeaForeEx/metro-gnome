@@ -102,7 +102,7 @@
   }
   
   /* =====================================================
-     INPUT FIELDS
+     INPUT / SLIDER
      ===================================================== */
   .input-group {
     margin-bottom: 1.5rem;
@@ -115,26 +115,7 @@
     font-size: 2rem;
     font-family: 'Luckiest Guy', cursive;
   }
-  
-  .input-group input:not([type="range"]),
-  .input-group select {
-    padding: 0.75rem;
-    font-size: 1.25rem;
-    font-family: 'Poppins', sans-serif;
-    border: 2px solid #F5F5DC;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
-    text-align: center;
-    margin: 0 auto;
-  }
-  
-  .input-group input:not([type="range"]):focus,
-  .input-group select:focus {
-    outline: none;
-    border-color: rgba(76, 175, 80, 0.8);
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-  }
+
   
   .slider-container {
     display: flex;
