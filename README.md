@@ -12,7 +12,7 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 ![Web Audio API](https://img.shields.io/badge/Web_Audio_API-FF6B35?style=flat&logo=html5&logoColor=white)
 
 
-![MetroGnome Desktop View](./screenshots/desktopView.png)
+![Metro-Gnome Desktop View](./screenshots/desktopView.png)
 
 ---
 
@@ -551,4 +551,4 @@ Questions or feedback? Feel free to reach out:
 
 ---
 
-Thank you for reviewing MetroGnome! 🍄🎵
+Thank you for reviewing Metro-Gnome! 🍄🎵
