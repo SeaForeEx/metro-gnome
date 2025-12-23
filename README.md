@@ -2,6 +2,8 @@
 
 A whimsical browser-based metronome built with TypeScript and Web Audio API designed for young musicians.
 
+**[🎵 Live Demo](https://metro-gnome.netlify.app/)** | [GitHub Repository](https://github.com/SeaForeEx/metro-gnome)
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
@@ -10,7 +12,7 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=flat&logo=npm&logoColor=white)
 ![Web Audio API](https://img.shields.io/badge/Web_Audio_API-FF6B35?style=flat&logo=html5&logoColor=white)
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/df5976de-57ee-48df-97fa-c622b8733335/deploy-status)](https://app.netlify.com/projects/metro-gnome/deploys)
 
 ![Metro-Gnome Desktop View](./screenshots/desktopView.png)
 
