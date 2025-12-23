@@ -1,5 +1,6 @@
 import './style.css'
 
+/* Render app */
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class='container'>
     <div class='welcome-header'>
@@ -37,11 +38,18 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     </div>
   </div>
 `
+/* DOM Elements */
+const bpmSlider = document.getElementById('bpm') as HTMLInputElement;
+const bpmDisplay = document.getElementById('bpm-display') as HTMLElement;
+const timeSignatureButtons = document.querySelectorAll('.time-sig-btn');
+const playButton = document.querySelector('.play-btn') as HTMLButtonElement;
+const stopButton = document.querySelector('.stop-btn') as HTMLButtonElement;
 
+/* Audio Context & Constants */
 const audioContext = new AudioContext();
-
 const SCHEDULER_INTERVAL = 25;
 
+/* State Variables */
 let tempo: number = 120.0;
 let timeSignature: number = 4;
 let nextNoteTime: number = 0.0;
@@ -50,11 +58,7 @@ let beatCount: number = 0;
 let isPlaying: boolean = false;
 let schedulerId: number | null = null;
 
-const bpmSlider = document.getElementById('bpm') as HTMLInputElement;
-const bpmDisplay = document.getElementById('bpm-display') as HTMLElement;
-
-const timeSignatureButtons = document.querySelectorAll('.time-sig-btn');
-
+/* Event Listeners */
 bpmSlider.addEventListener('input', () => {
   tempo = parseInt(bpmSlider.value);
   bpmDisplay.textContent = bpmSlider.value;
@@ -70,6 +74,25 @@ timeSignatureButtons.forEach(button => {
   });
 });
 
+playButton.addEventListener('click', () => {
+  if (isPlaying) return;
+
+  nextNoteTime = audioContext.currentTime;
+  beatCount = 0;
+  isPlaying = true;
+
+  schedulerId = setInterval(() => scheduler(), SCHEDULER_INTERVAL);
+})
+
+stopButton.addEventListener('click', () => {
+  isPlaying = false;
+  if (schedulerId !== null) {
+    clearInterval(schedulerId);
+    schedulerId = null; 
+  }
+})
+
+/* Audio Functions */
 function nextNote() {
   let secondsPerBeat = 60.0 / tempo;
 
@@ -110,24 +133,3 @@ function scheduler() {
     nextNote();
   }
 }
-
-const playButton = document.querySelector('.play-btn') as HTMLButtonElement;
-const stopButton = document.querySelector('.stop-btn') as HTMLButtonElement;
-
-playButton.addEventListener('click', () => {
-  if (isPlaying) return;
-
-  nextNoteTime = audioContext.currentTime;
-  beatCount = 0;
-  isPlaying = true;
-
-  schedulerId = setInterval(() => scheduler(), SCHEDULER_INTERVAL);
-})
-
-stopButton.addEventListener('click', () => {
-  isPlaying = false;
-  if (schedulerId !== null) {
-    clearInterval(schedulerId);
-    schedulerId = null; 
-  }
-})
