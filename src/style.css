@@ -10,14 +10,18 @@
 /* =====================================================
    BODY & BACKGROUND
    ===================================================== */
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 html, body {
   height: 100%;
-  overflow: hidden; /* Prevents any scrolling */
 }
 
 .container {
   height: 100vh;
-  overflow-y: auto; /* Only container scrolls if needed */
+  overflow-y: auto;
 }
 
 body {
@@ -26,7 +30,7 @@ body {
   min-height: 100vh;
   background-color: rgb(54, 72, 142);
   color: #F5F5DC;
-  overflow-x: hidden;
+  overflow: hidden;
   text-shadow: 
     2px 2px 4px rgba(0, 0, 0, 0.8),
     0 0 5px rgba(250, 235, 215, 0.6);}
@@ -53,6 +57,8 @@ body::before {
   align-items: center;
   text-align: center;
   min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .content-wrapper {
