@@ -24,7 +24,7 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 2. [Project Setup](#project-setup)
 3. [Debugging Node Version Conflicts](#debugging-node-version-conflicts)
 4. [Design Decisions](#design-decisions)
-5. [Intial Audio Testing](#initial-audio-testing)
+5. [Initial Audio Testing](#initial-audio-testing)
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
 7. [Connecting the UI Controls](#connecting-the-ui-controls)
 8. [Unit Testing](#unit-testing)
