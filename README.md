@@ -504,7 +504,7 @@ function nextNote() {
     These iterations demonstrate that even after core functionality is working, reconsidering UX and visual design through the lens of the end user can lead to meaningful improvements in both usability and delight.
   </td>
   <td width="50%">
-    <img width="350" height="620" alt="Themed UI Elements" src="https://github.com/user-attachments/assets/c8e39927-2a28-4fd4-963b-1176b89abe96" />
+    <img alt="Themed UI Elements" src="/screenshots/moreDesignChoices.png" />
   </td>
 </tr>
 </table>
