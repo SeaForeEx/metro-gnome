@@ -20,10 +20,11 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 1. [Prerequisites](#prerequisites)
 2. [Project Setup](#project-setup)
 3. [Debugging Node Version Conflicts](#debugging-node-version-conflicts)
-4. [Design Decisions](#design-decisions)
+4. [Design Decisions Part 1](#design-decisions-part-1)
 5. [Testing & Development Process](#testing--development-process)
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
 7. [Metronome Input Functionality](#metronome-input-functionality)
+8. [Design Decisions Part 2](#design-decisions-part-2)
 
 ---
 
@@ -87,7 +88,7 @@ I identified which installation was being used with `which node`, disabled NVM i
 
 ---
 
-## Design Decisions
+## Design Decisions Part 1
 
 ### Branding & Theme
 
@@ -377,6 +378,118 @@ stopButton.addEventListener('click', () => {
 
 ---
 
-## Metronome Input Functionality
+## Connecting the UI Controls
+
+Now that I have a steady beat, it's time to connect the BPM and Time Signature input fields for user interaction.
+
+### BPM
+
+#### The HTML
+```html
+<label for='bpm'>BPM</label>
+<input type='number' id='bpm' value='120' min='40' max='208' 
+  oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+  <span id='bpm-error' class='error-message'>
+    Keep BPM between 40-208
+  </span>
+```
+
+- **input type='number':** Creates a number input field with up/down arrow controls.
+- **value='120':** Sets the default starting tempo to 120 BPM.
+- **min='40' max='208':** Limits the arrow buttons to a range of 40-208 BPM. This range covers all practical musical tempos while preventing extremely slow or fast speeds that could cause audio issues or be unusable for K-8 students.
+- **oninput validation:** Uses a regular expression to strip any non-digit characters as the user types, preventing negative numbers, letters, and symbols.
+- **error message span:** Hidden by default, displays "Keep BPM between 40-208" when user types a value outside the valid range.
+
 
 ![BPM Error Message](./screenshots/errorMessage.png)
+
+#### The TypeScript
+```typescript
+let tempo = 120.0;
+const bpmInput = document.getElementById('bpm') as HTMLInputElement;
+const bpmError = document.getElementById('bpm-error') as HTMLElement;
+
+bpmInput.addEventListener('input', () => {
+  const value = parseFloat(bpmInput.value);
+  if (value >= 40 && value <= 208) {
+    tempo = value;
+    bpmError.style.display = 'none';
+  } else {
+    bpmError.style.display = 'block';
+  }
+});
+
+bpmInput.addEventListener('blur', () => {
+  bpmInput.value = tempo.toString();
+  bpmError.style.display = 'none';
+});
+
+function nextNote() {
+  let secondsPerBeat = 60.0 / tempo;
+  // ...
+}
+```
+
+- **tempo:** Initialized to 120 as the default starting tempo, updated when user changes the BPM input.
+- **bpmInput:** References the BPM input field in the DOM.
+- **bpmError:** References the error message element (hidden by default).
+- **input event listener:** Validates the typed BPM value. If between 40-208, updates tempo and hides the error. If outside this range, shows the error message without updating tempo.
+- **blur event listener:** When the user leaves the input field, resets the display to match the current tempo and hides any error message.
+- **nextNote():** The tempo variable is used here to calculate secondsPerBeat, which determines the interval between metronome clicks.
+
+### Time Signature
+
+#### The HTML
+```html
+<label for='time-signature'>Time Signature</label>
+<select id='time-signature'>
+  <option value='4'>4/4</option>
+  <option value='3'>3/4</option>
+  <option value='6'>6/8</option>
+</select>
+```
+
+- **select element:** Dropdown menu for selecting time signature, with `id='time-signature'` to connect to JavaScript.
+- **option values:** Provides four common time signatures (4/4, 3/4, 6/8). The value represents the number of beats per measure.
+
+#### The TypeScript
+```typescript
+let timeSignature = 4;
+const timeSignatureInput = document.getElementById('time-signature') as HTMLSelectElement;
+
+timeSignatureInput?.addEventListener('input', () => {
+  timeSignature = parseFloat(timeSignatureInput.value);
+})
+
+function nextNote() {
+  let secondsPerBeat = 60.0 / tempo;
+  
+  // 6/8 time plays eighth notes (twice as fast)
+  if (timeSignature === 6) {
+    secondsPerBeat = secondsPerBeat / 2;
+  }
+  // ...
+}
+```
+
+- **timeSignature:** Initialized to 4 (4/4 time signature), updated when user changes the time signature dropdown.
+- **timeSignatureInput:** References the time signature select menu in the DOM.
+- **input event listener:** Updates the timeSignature variable when user selects a different option from the dropdown.
+- **nextNote() logic:** If 6/8 time is selected, divides the beat duration by 2 to play eighth notes instead of quarter notes, making the clicks twice as fast to match standard metronome behavior for compound time signatures.
+
+---
+
+## Design Decisions (Continued)
+
+### Iterating on BPM Input
+
+After completing the initial implementation with a number input field, I continued researching other online metronomes and noticed many used sliders for BPM control. Considering the K-8 target audience, I decided to refactor the BPM input to use a slider instead. This change provides:
+
+- **More intuitive interaction** for young users who may struggle with precise number typing
+- **Immediate visual feedback** of the tempo range
+- **Tactile experimentation** encouraging students to explore different tempos by feel
+- **Clearer constraints** showing the 40-208 BPM range visually
+
+This iteration demonstrates that even after core functionality is working, reconsidering UX decisions through the lens of the end user can lead to meaningful improvements.
+
+---
