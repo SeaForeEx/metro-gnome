@@ -61,6 +61,8 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    max-width: 100%;
+    width: 100%;
   }
   
   /* =====================================================
@@ -95,6 +97,8 @@
      ===================================================== */
   .text-container {
     flex: 1;
+    max-width: 100%;
+    overflow: hidden;
   }
   
   /* =====================================================
@@ -194,6 +198,7 @@
     border: none;
     cursor: pointer;
     transition: transform 0.2s;
+    will-change: transform;
   }
   
   .control-btn:hover {
