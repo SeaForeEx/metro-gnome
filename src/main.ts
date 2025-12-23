@@ -89,6 +89,7 @@ function nextNote() {
 function scheduleNote( beatNumber: number, time: number) {
   const gainNode = audioContext.createGain();
   const oscillator = audioContext.createOscillator();
+  
   oscillator.type = "sine";
   oscillator.frequency.value = beatNumber % timeSignature === 0 ? 440.0 : 220.0;
 
