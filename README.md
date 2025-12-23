@@ -478,7 +478,7 @@ function nextNote() {
 
 ## Unit Testing
 
-To ensure the core metronome logic functions correctly, I implemented unit tests using Vitest. These tests verify the mathematical calculations and decision-making logic without requiring complex Web Audio API mocking.
+To ensure the core metronome logic functions correctly, I implemented unit tests using [Vitest](https://vitest.dev/). These tests verify the mathematical calculations and decision-making logic without requiring complex Web Audio API mocking.
 
 ### Running Tests
 ```bash
