@@ -119,7 +119,7 @@ The app adapts to different screen sizes to ensure usability across devices stud
 - Desktop: Side-by-side layout with image and controls
 - Mobile: Stacked vertical layout for easier touch interaction
 
-<img alt="Mobile Screen View" src="/screenshots/mobileView.png" width="20%" />
+<img alt="Mobile Screen View" src="/screenshots/mobileView.png" width="25%" />
   
 ---
 
