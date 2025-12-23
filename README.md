@@ -119,7 +119,7 @@ The app adapts to different screen sizes to ensure usability across devices stud
 - Desktop: Side-by-side layout with image and controls
 - Mobile: Stacked vertical layout for easier touch interaction
 
-<img alt="Mobile Screen View" src="/screenshots/mobileView.png" width="50%" />
+<img alt="Mobile Screen View" src="/screenshots/mobileView.png" width="30%" />
   
 ---
 
@@ -499,7 +499,7 @@ I created custom wooden-textured buttons to replace the standard controls, reinf
 
 These iterations demonstrate that even after core functionality is working, reconsidering UX and visual design through the lens of the end user can lead to meaningful improvements in both usability and delight.
 
-<img alt="Themed UI Elements" src="/screenshots/moreDesignChoices.png" width="50%" />
+<img alt="Themed UI Elements" src="/screenshots/moreDesignChoices.png" width="30%" />
 
 ---
 
