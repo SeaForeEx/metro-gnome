@@ -17,6 +17,8 @@ body {
   background-color: rgb(54, 72, 142);
   color: #F5F5DC;
   overflow-x: hidden;
+  overflow-y: auto; /* Add this */
+  height: 100vh; /* Add this - locks height to viewport */
   text-shadow: 
     2px 2px 4px rgba(0, 0, 0, 0.8),
     0 0 5px rgba(250, 235, 215, 0.6);}
@@ -151,6 +153,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 50px;
   background-image: url('/acorn.png');
   background-size: cover;
+  background-color: transparent;
   cursor: pointer;
   border: none;
 }
@@ -161,6 +164,7 @@ input[type="range"]::-moz-range-thumb {
   height: 50px;
   background-image: url('/acorn.png');
   background-size: cover;
+  background-color: transparent;
   cursor: pointer;
   border: none;
 }
