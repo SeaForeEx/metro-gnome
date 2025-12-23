@@ -24,7 +24,7 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 5. [Testing & Development Process](#testing--development-process)
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
 7. [Connecting the UI Controls](#connecting-the-ui-controls)
-8. [Design Decisions (Continued)](#design-decisions-continued)
+8. [Design Decisions (Continued)](#design-decisions-(continued))
 
 ---
 
@@ -479,7 +479,7 @@ function nextNote() {
 
 ---
 
-## Design Decisions Continued
+## Design Decisions (Continued)
 
 ### Iterating on BPM Input
 
