@@ -13,12 +13,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
       <div class='text-container'>
         <div class='input-group'>
-          <label for='bpm'>BPM</label>
-          <input type='number' id='bpm' value='120' min='40' max='208' 
-            oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
-            <span id='bpm-error' class='error-message'>
-              Keep BPM between 40-208
-            </span>
+          <div class='slider-container'>
+            <label for='bpm'>BPM:</label>
+            <span id='bpm-display'>120</span>
+          </div>
+          <input type='range' id='bpm' step="1" value='120' min='40' max='208' />
         </div>
         <div class='input-group'>
           <label for='time-signature'>Time Signature</label>
@@ -48,23 +47,14 @@ let scheduleAheadTime = 0.1;
 let beatCount = 0;
 let isPlaying = false;
 
-const bpmInput = document.getElementById('bpm') as HTMLInputElement;
-const bpmError = document.getElementById('bpm-error') as HTMLElement;
+const bpmSlider = document.getElementById('bpm') as HTMLInputElement;
+const bpmDisplay = document.getElementById('bpm-display') as HTMLElement;
+
 const timeSignatureInput = document.getElementById('time-signature') as HTMLSelectElement;
 
-bpmInput.addEventListener('input', () => {
-  const value = parseFloat(bpmInput.value);
-  if (value >= 40 && value <= 208) {
-    tempo = value;
-    bpmError.style.display = 'none';
-  } else {
-    bpmError.style.display = 'block';
-  }
-});
-
-bpmInput.addEventListener('blur', () => {
-  bpmInput.value = tempo.toString();
-  bpmError.style.display = 'none';
+bpmSlider.addEventListener('input', () => {
+  tempo = parseInt(bpmSlider.value);
+  bpmDisplay.textContent = bpmSlider.value;
 });
 
 timeSignatureInput?.addEventListener('input', () => {
