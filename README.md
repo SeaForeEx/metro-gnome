@@ -15,8 +15,6 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 [![Web Audio API](https://img.shields.io/badge/Web_Audio_API-FF6B35?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/df5976de-57ee-48df-97fa-c622b8733335/deploy-status)](https://app.netlify.com/projects/metro-gnome/deploys)
 
-(https://app.netlify.com/projects/metro-gnome/deploys)
-
 ![Metro-Gnome Desktop View](./screenshots/desktopView.png)
 
 ---
