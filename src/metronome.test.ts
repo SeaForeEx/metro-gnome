@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
 describe('BPM to Seconds Conversion', () => {
-    it('coverts BPM to seconds per beat correctly', () => {
+    it('converts BPM to seconds per beat correctly', () => {
         // 120 BPM
         let tempo1 = 120;
         let secondsPerBeat1 = 60.0 / tempo1;
