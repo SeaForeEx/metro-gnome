@@ -66,7 +66,7 @@ git --version
 
 ```bash
 git clone https://github.com/SeaForeEx/metro-gnome.git
-cd metrognome
+cd metro-gnome
 ```
 
 ### 2. Install Dependencies
