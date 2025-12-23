@@ -20,11 +20,11 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 1. [Prerequisites](#prerequisites)
 2. [Project Setup](#project-setup)
 3. [Debugging Node Version Conflicts](#debugging-node-version-conflicts)
-4. [Design Decisions Part 1](#design-decisions-part-1)
+4. [Design Decisions](#design-decisions)
 5. [Testing & Development Process](#testing--development-process)
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
 7. [Metronome Input Functionality](#metronome-input-functionality)
-8. [Design Decisions Part 2](#design-decisions-part-2)
+8. [Design Decisions (Continued)](#design-decisions-(continued))
 
 ---
 
@@ -88,7 +88,7 @@ I identified which installation was being used with `which node`, disabled NVM i
 
 ---
 
-## Design Decisions Part 1
+## Design Decisions
 
 ### Branding & Theme
 
