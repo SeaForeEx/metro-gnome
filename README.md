@@ -99,12 +99,8 @@ I identified which installation was being used with `which node`, disabled NVM i
 
 Since QuaverEd builds educational music applications for K-8 students, I wanted to create something that would be engaging and fun for young learners while maintaining a professional, musical focus.
 
-<table>
-<tr>
-<td width="50%">
-
 **The Metro-Gnome Concept**
-<br /><br />
+
 I chose "Metro-Gnome" as a playful spin on "metronome" - combining the musical tool with a whimsical garden gnome character. This creates:
 - A memorable, kid-friendly brand
 - Visual interest that appeals to younger students
@@ -120,17 +116,10 @@ The Metro-Gnome won out for its broad appeal, clear visual identity, and alignme
 The app adapts to different screen sizes to ensure usability across devices students and teachers might use:
 
 **Key responsive features:**
-- Desktop (already shown): Side-by-side layout with image and controls
-- Mobile (to the right): Stacked vertical layout for easier touch interaction
+- Desktop: Side-by-side layout with image and controls
+- Mobile: Stacked vertical layout for easier touch interaction
 
-</td>
-<td width="50%">
-
-![Mobile View](./screenshots/mobileView.png)
-
-</td>
-</tr>
-</table>
+<img alt="Mobile Screen View" src="/screenshots/mobileView.png" width="20%" />
   
 ---
 
@@ -489,30 +478,28 @@ function nextNote() {
 
 ### Adding Thematic UI Elements
 
-<table>
-<tr>
-  <td width="50%">
-    After completing the initial implementation, I continued refining the UI to better align with the whimsical forest theme and K-8 target audience.
-    <br /><br />
-    <strong>BPM Slider with Acorn Handle:</strong><br />
-    I replaced the number input with a slider featuring a custom acorn thumb. This change provides:
-    <ul>
-      <li><strong>More intuitive interaction</strong> for young users who may struggle with precise number typing</li>
-      <li><strong>Immediate visual feedback</strong> of the tempo range</li>
-      <li><strong>Tactile experimentation</strong> encouraging students to explore different tempos by feel</li>
-      <li><strong>Thematic consistency</strong> with the forest/gnome aesthetic</li>
-    </ul>
-    <br />
-    <strong>Wooden Play/Stop Buttons:</strong><br />
-    I created custom wooden-textured buttons to replace the standard controls, reinforcing the forest theme and making the interface more engaging for young musicians.
-    <br /><br />
-    These iterations demonstrate that even after core functionality is working, reconsidering UX and visual design through the lens of the end user can lead to meaningful improvements in both usability and delight.
-  </td>
-  <td width="50%">
-    <img alt="Themed UI Elements" src="/screenshots/moreDesignChoices.png" />
-  </td>
-</tr>
-</table>
+After completing the initial implementation, I continued refining the UI to better align with the whimsical forest theme and K-8 target audience.
+
+**BPM Slider with Acorn Handle:**  
+I replaced the number input with a slider featuring a custom acorn thumb. This change provides:
+- **More intuitive interaction** for young users who may struggle with precise number typing
+- **Immediate visual feedback** of the tempo range
+- **Tactile experimentation** encouraging students to explore different tempos by feel
+- **Thematic consistency** with the forest/gnome aesthetic
+
+**Time Signature Buttons:**  
+I replaced the dropdown menu with three large, colorful buttons for selecting time signatures. This design choice offers:
+- **Direct interaction** eliminating the cognitive overhead of dropdown menus for K-8 students
+- **Clear visual state** with the active selection highlighted in green
+- **Touch-friendly targets** ideal for tablets and interactive whiteboards common in music classrooms
+- **Reduced complexity** presenting all options simultaneously rather than hiding them in a menu
+
+**Wooden Play/Stop Buttons:**  
+I created custom wooden-textured buttons to replace the standard controls, reinforcing the forest theme and making the interface more engaging for young musicians.
+
+These iterations demonstrate that even after core functionality is working, reconsidering UX and visual design through the lens of the end user can lead to meaningful improvements in both usability and delight.
+
+<img alt="Themed UI Elements" src="/screenshots/moreDesignChoices.png" width="25%" />
 
 ---
 
