@@ -40,13 +40,15 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 const audioContext = new AudioContext();
 
-let oscillator: OscillatorNode | null = null;
+const SCHEDULER_INTERVAL = 25;
+
 let tempo: number = 120.0;
 let timeSignature: number = 4;
 let nextNoteTime: number = 0.0;
 let scheduleAheadTime: number = 0.1;
 let beatCount: number = 0;
 let isPlaying: boolean = false;
+let schedulerId: number | null = null;
 
 const bpmSlider = document.getElementById('bpm') as HTMLInputElement;
 const bpmDisplay = document.getElementById('bpm-display') as HTMLElement;
@@ -79,27 +81,22 @@ function nextNote() {
 
   beatCount++;
 
-  if (beatCount == timeSignature) {
+  if (beatCount === timeSignature) {
     beatCount = 0;
   }
 }
 
 function scheduleNote( beatNumber: number, time: number) {
   const gainNode = audioContext.createGain();
-
-  oscillator = audioContext.createOscillator();
+  const oscillator = audioContext.createOscillator();
   oscillator.type = "sine";
-  oscillator.frequency.value = 220.0;
+  oscillator.frequency.value = beatNumber % timeSignature === 0 ? 440.0 : 220.0;
 
   gainNode.gain.setValueAtTime(0.3, time);
   gainNode.gain.exponentialRampToValueAtTime(0.01, time + 0.05);
 
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
-
-  if (beatNumber % timeSignature === 0) {
-    oscillator.frequency.value = 440.0;
-  }
   
   oscillator.start(time);
   oscillator.stop(time + 0.05);
@@ -116,8 +113,6 @@ function scheduler() {
 const playButton = document.querySelector('.play-btn') as HTMLButtonElement;
 const stopButton = document.querySelector('.stop-btn') as HTMLButtonElement;
 
-let schedulerId: number | null = null;
-
 playButton.addEventListener('click', () => {
   if (isPlaying) return;
 
@@ -125,7 +120,7 @@ playButton.addEventListener('click', () => {
   beatCount = 0;
   isPlaying = true;
 
-  schedulerId = setInterval(() => scheduler(), 25);
+  schedulerId = setInterval(() => scheduler(), SCHEDULER_INTERVAL);
 })
 
 stopButton.addEventListener('click', () => {
