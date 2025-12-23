@@ -1,266 +1,260 @@
 /* =====================================================
    RESET
    ===================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* =====================================================
-   BODY & BACKGROUND
-   ===================================================== */
-html {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-html, body {
-  height: 100%;
-}
-
-.container {
-  height: 100vh;
-  overflow-y: auto;
-}
-
-body {
-  font-family: 'Luckiest Guy', cursive;
-  letter-spacing: 1px;
-  min-height: 100vh;
-  background-color: rgb(54, 72, 142);
-  color: #F5F5DC;
-  overflow: hidden;
-  text-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 0.8),
-    0 0 5px rgba(250, 235, 215, 0.6);}
-
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/forest-background.png");
-  opacity: 0.4;
-  z-index: -1;
-}
-
-/* =====================================================
-   LAYOUT CONTAINERS
-   ===================================================== */
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.content-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-}
-
-/* =====================================================
-   HEADER
-   ===================================================== */
-.welcome-header {
-  margin-bottom: 2rem;
-  font-size: 3rem;
-  width: 100%;
-  text-align: center;
-  align-self: stretch;
-}
-
-.mobile-break {
-  display: none;
-}
-
-/* =====================================================
-   IMAGE SECTION
-   ===================================================== */
-.image-container {
-  width: 60%;
-}
-
-.metro-gnome-image {
-  flex: 1.5;
-  width: 100%;
-}
-
-/* =====================================================
-   TEXT/CONTROLS SECTION
-   ===================================================== */
-.text-container {
-  flex: 1;
-}
-
-/* =====================================================
-   INPUT FIELDS
-   ===================================================== */
-.input-group {
-  margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.input-group label {
-  font-size: 2rem;
-  font-family: 'Luckiest Guy', cursive;
-}
-
-.input-group input:not([type="range"]),
-.input-group select {
-  padding: 0.75rem;
-  font-size: 1.25rem;
-  font-family: 'Poppins', sans-serif;
-  border: 2px solid #F5F5DC;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.input-group input:not([type="range"]):focus,
-.input-group select:focus {
-  outline: none;
-  border-color: rgba(76, 175, 80, 0.8);
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-}
-
-.slider-container {
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-  gap: 0.5rem;
-}
-
-/* Slider customization */
-
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 75%;
-  height: 0.25rem;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 5px;
-  outline: none;
-  margin: 1rem auto;
-  display: block;
-}
-
-/* Chrome/Safari - Acorn thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50px;
-  height: 50px;
-  background-image: url('/acorn.png');
-  background-size: cover;
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
-  box-shadow: none;
-}
-
-/* Firefox - Acorn thumb */
-input[type="range"]::-moz-range-thumb {
-  width: 50px;
-  height: 50px;
-  background-image: url('/acorn.png');
-  background-size: cover;
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
-  box-shadow: none;
-}
-
-/* =====================================================
-   BUTTONS
-   ===================================================== */
-.button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.control-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.control-btn:hover {
-  transform: scale(1.05);
-}
-
-.btn-image {
-  width: 50%;
-}
-
-/* ===================================
-   MEDIA QUERIES
-   =================================== */
-
-/* Tablet and smaller */
-@media (max-width: 768px) {
-  .content-wrapper {
-    flex-direction: column;
-    gap: 2rem;
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   
-  .image-container,
-  .text-container {
-    flex: none;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .welcome-header {
-    font-size: 2rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  body::before {
-    background-size: cover;
-  }
-
-  .welcome-header {
-    margin-bottom: 1rem;
-  }
-
-  .mobile-break {
-    display: block;
+  /* =====================================================
+     BODY & BACKGROUND
+     ===================================================== */
+  html, body {
+    height: 100%;
+    overflow: hidden; 
   }
   
   .container {
-    padding: 1rem; 
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  body {
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 1px;
+    min-height: 100vh;
+    background-color: rgb(54, 72, 142);
+    color: #F5F5DC;
+    overflow-x: hidden;
+    text-shadow: 
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 5px rgba(250, 235, 215, 0.6);}
+  
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/forest-background.png");
+    opacity: 0.4;
+    z-index: -1;
+  }
+  
+  /* =====================================================
+     LAYOUT CONTAINERS
+     ===================================================== */
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
   }
   
   .content-wrapper {
-    gap: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
   }
-
+  
+  /* =====================================================
+     HEADER
+     ===================================================== */
+  .welcome-header {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+    align-self: stretch;
+  }
+  
+  .mobile-break {
+    display: none;
+  }
+  
+  /* =====================================================
+     IMAGE SECTION
+     ===================================================== */
+  .image-container {
+    width: 60%;
+  }
+  
   .metro-gnome-image {
-    width: 90%;
+    flex: 1.5;
+    width: 100%;
   }
-
-  .control-btn {
+  
+  /* =====================================================
+     TEXT/CONTROLS SECTION
+     ===================================================== */
+  .text-container {
+    flex: 1;
+  }
+  
+  /* =====================================================
+     INPUT FIELDS
+     ===================================================== */
+  .input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .input-group label {
+    font-size: 2rem;
+    font-family: 'Luckiest Guy', cursive;
+  }
+  
+  .input-group input:not([type="range"]),
+  .input-group select {
+    padding: 0.75rem;
     font-size: 1.25rem;
-    padding: 0.75rem 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #F5F5DC;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    text-align: center;
+    margin: 0 auto;
   }
-}
+  
+  .input-group input:not([type="range"]):focus,
+  .input-group select:focus {
+    outline: none;
+    border-color: rgba(76, 175, 80, 0.8);
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+  }
+  
+  .slider-container {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    gap: 0.5rem;
+  }
+  
+  /* Slider customization */
+  
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 75%;
+    height: 0.25rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    outline: none;
+    margin: 1rem auto;
+    display: block;
+  }
+  
+  /* Chrome/Safari - Acorn thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 50px;
+    background-image: url('/acorn.png');
+    background-size: cover;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+  }
+  
+  /* Firefox - Acorn thumb */
+  input[type="range"]::-moz-range-thumb {
+    width: 50px;
+    height: 50px;
+    background-image: url('/acorn.png');
+    background-size: cover;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+  }
+  
+  /* =====================================================
+     BUTTONS
+     ===================================================== */
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .control-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .control-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .btn-image {
+    width: 50%;
+  }
+  
+  /* ===================================
+     MEDIA QUERIES
+     =================================== */
+  
+  /* Tablet and smaller */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .image-container,
+    .text-container {
+      flex: none;
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .welcome-header {
+      font-size: 2rem;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 480px) {
+    body::before {
+      background-size: cover;
+    }
+  
+    .welcome-header {
+      margin-bottom: 1rem;
+    }
+  
+    .mobile-break {
+      display: block;
+    }
+    
+    .container {
+      padding: 1rem; 
+    }
+    
+    .content-wrapper {
+      gap: 1.5rem;
+    }
+  
+    .metro-gnome-image {
+      width: 90%;
+    }
+  
+    .control-btn {
+      font-size: 1.25rem;
+      padding: 0.75rem 1.5rem;
+    }
+  }
