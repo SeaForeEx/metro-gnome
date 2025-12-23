@@ -121,7 +121,7 @@ function nextNote() {
   let secondsPerBeat = 60.0 / tempo;
 
   if (timeSignature === 6) {
-    secondsPerBeat = secondsPerBeat / 2;
+    secondsPerBeat /= 2;
   }
 
   nextNoteTime += secondsPerBeat;

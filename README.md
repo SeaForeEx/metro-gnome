@@ -10,6 +10,7 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=flat&logo=vitest&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
 ![NPM](https://img.shields.io/badge/NPM-CB3837?style=flat&logo=npm&logoColor=white)
 ![Web Audio API](https://img.shields.io/badge/Web_Audio_API-FF6B35?style=flat&logo=html5&logoColor=white)
@@ -24,12 +25,13 @@ A whimsical browser-based metronome built with TypeScript and Web Audio API desi
 2. [Project Setup](#project-setup)
 3. [Debugging Node Version Conflicts](#debugging-node-version-conflicts)
 4. [Design Decisions](#design-decisions)
-5. [Testing & Development Process](#testing--development-process)
+5. [Intial Audio Testing](#initial-audio-testing)
 6. [Building the Metronome Functionality](#building-the-metronome-functionality)
 7. [Connecting the UI Controls](#connecting-the-ui-controls)
-8. [More Design Decisions](#more-design-decisions)
-9. [Future Enhancements](#future-enhancements)
-10. [Contact](#contact)
+8. [Unit Testing](#unit-testing)
+9. [More Design Decisions](#more-design-decisions)
+10. [Future Enhancements](#future-enhancements)
+11. [Contact](#contact)
 
 ---
 
@@ -123,7 +125,7 @@ The app adapts to different screen sizes to ensure usability across devices stud
   
 ---
 
-## Testing & Development Process
+## Initial Audio Testing
 
 Before implementing the full metronome, I tested basic Web Audio API functionality to understand how audio nodes work.
 
@@ -471,6 +473,43 @@ function nextNote() {
 - **timeSignatureInput:** References the time signature select menu in the DOM.
 - **input event listener:** Updates the timeSignature variable when user selects a different option from the dropdown.
 - **nextNote() logic:** If 6/8 time is selected, divides the beat duration by 2 to play eighth notes instead of quarter notes, making the clicks twice as fast to match standard metronome behavior for compound time signatures.
+
+---
+
+## Unit Testing
+
+To ensure the core metronome logic functions correctly, I implemented unit tests using Vitest. These tests verify the mathematical calculations and decision-making logic without requiring complex Web Audio API mocking.
+
+### Running Tests
+```bash
+npm test
+```
+
+### Test Coverage
+
+The test suite covers four critical areas of metronome functionality:
+
+**1. BPM to Seconds Conversion**
+- Verifies the formula `60 / BPM = seconds per beat`
+- Tests multiple tempos (60 BPM, 120 BPM)
+
+**2. Time Signature Beat Duration**
+- Confirms standard time signatures (4/4, 3/4) use quarter note duration
+- Verifies 6/8 time signature correctly plays eighth notes (twice as fast)
+
+**3. Beat Counter Reset**
+- Ensures beat counter resets to 0 when reaching the end of a measure
+- Validates proper measure cycling for accurate accent placement
+
+**4. Beat Accent Logic**
+- Tests that beat 1 (downbeat) receives the higher frequency (440Hz)
+- Confirms other beats use the standard frequency (220Hz)
+
+### Test Results
+
+![Test Results](./screenshots/testResults.png)
+
+**All tests pass**, confirming the metronome's core timing and accent logic work as intended.
 
 ---
 
